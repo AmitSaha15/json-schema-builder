@@ -1,14 +1,13 @@
 import React from "react";
 import { useFieldArray, Controller } from "react-hook-form";
 import { Button, Input, Select, Space } from "antd";
-import { CloseOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
 const NestedSchema = React.memo(({ control, path, watch }) => {
   const fieldsPath = `${path}.children`;
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append } = useFieldArray({
     control,
     name: fieldsPath,
   });
@@ -44,12 +43,6 @@ const NestedSchema = React.memo(({ control, path, watch }) => {
                   </Select>
                 )}
               />
-              <Button
-                icon={<CloseOutlined />}
-                onClick={() => remove(index)}
-                type="text"
-                danger
-              />
             </Space>
 
             {fieldType === "nested" && (
@@ -67,7 +60,7 @@ const NestedSchema = React.memo(({ control, path, watch }) => {
       <Button
         type="primary"
         ghost
-        onClick={() => append({ name: "", type: null, children: [] })}
+        onClick={() => append({ name: "", type: "" })}
         style={{ width: "100%" }}
       >
         + Add Item

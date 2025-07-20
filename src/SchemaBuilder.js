@@ -69,7 +69,7 @@ const FieldGroup = ({ control, path, watch }) => {
       <Button
         type={path === "schema" ? "primary" : "primary"}
         ghost={path !== "schema"}
-        onClick={() => append({ name: "", type: null, children: [] })}
+        onClick={() => append({ name: "", type: "" })}
         block
       >
         + Add Item
@@ -82,7 +82,7 @@ const generateJson = (schemaData) => {
   const result = {};
   if (!schemaData) return result;
   schemaData.forEach((item) => {
-    if (!item || !item.name) return;
+    if (!item) return;
     if (item.type === "nested") {
       result[item.name] = generateJson(item.children);
     } else {
